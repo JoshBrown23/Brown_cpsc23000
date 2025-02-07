@@ -1,0 +1,7 @@
+Test1	78
+Test2	81 
+Essay	64
+Quiz1	86
+Quiz1	13
+HW1	87
+HW2	77
