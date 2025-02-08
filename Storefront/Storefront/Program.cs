@@ -28,7 +28,7 @@ namespace Storefront
             string itemName;
             int quantity;
             double totalCost = 0;
-            bool qtyFlag = false;
+            bool qtyFlag;
 
             try
             {
@@ -74,6 +74,7 @@ namespace Storefront
                 itemName = ReadLine();
                 if (inventory.ContainsKey(itemName))
                 {
+                    qtyFlag = false;
                         while (qtyFlag == false)
                         { 
                             try
