@@ -1,11 +1,4 @@
-﻿using System.Buffers.Text;
-using System.Diagnostics.Metrics;
-using System.Drawing;
-using System.Threading;
-using System;
-using static System.Console;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using static System.Console;
 namespace Object_OrientedExample_MonsterHunterWeapon
 {
     internal class Program
