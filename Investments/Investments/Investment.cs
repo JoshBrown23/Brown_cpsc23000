@@ -17,6 +17,8 @@ namespace Investments
         public string NameOfHolder { get; set; }
 
         public double Balance { get; set; }
+
+        //I got this code for DateTime formatting from the Dr. Klump's .NET Programming Week 5 Inheritance and Polymorphism powerpoint. 
         public string OpeningDate
         {
             get
