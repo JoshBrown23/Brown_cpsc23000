@@ -49,7 +49,17 @@ namespace Library
 
         public override string ToString()
         {
-            return $"{base.ToString()}\n{CopyrightYear}\n{Author}";
+            return $"{base.ToString()}\n{CopyrightYear}\n{Author}\n\n";
+        }
+
+        public override Holding CreateHolding(string[] desc)
+        {
+            int id = int.Parse(desc[0]);
+            string title = desc[1];
+            string description = desc[2];
+            int copyrightYear = int.Parse(desc[3]);
+            string author = desc[4];
+            return new Book(id, title, description, copyrightYear, author);
         }
     }
 }

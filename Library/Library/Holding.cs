@@ -58,5 +58,7 @@ namespace Library
                 return "Checked Out";
             }
         }
+
+        public abstract Holding CreateHolding(string[] desc);
     }
 }
