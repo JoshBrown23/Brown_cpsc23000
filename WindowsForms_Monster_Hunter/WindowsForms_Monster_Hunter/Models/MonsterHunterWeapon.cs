@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace WindowsForms_Monster_Hunter.Models
 {
+    [JsonDerivedType(typeof(MonsterHunterWeapon), "weapon")]
     public class MonsterHunterWeapon
     {
         private int damageValue;
@@ -200,6 +202,9 @@ namespace WindowsForms_Monster_Hunter.Models
             }
         }
 
+        public string Rank { get; set; }
+        public double DamageCalc { get; set; }
+
         public MonsterHunterWeapon()
         {
             Name = "";
@@ -209,9 +214,11 @@ namespace WindowsForms_Monster_Hunter.Models
             MotionValue = 0.5;
             SharpnessColor = "yellow";
             SharpnessMultiplier = sharpnessMultiplier;
+            Rank = "LR";
+            DamageCalc = CalculateDamage();
         }
 
-        public MonsterHunterWeapon(string name, string weaponClass, int damageValue, double motionValue, string sharpnessColor)
+        public MonsterHunterWeapon(string name, string weaponClass, int damageValue, double motionValue, string sharpnessColor, string rank)
         {
             Name = name;
             WeaponClass = weaponClass;
@@ -220,17 +227,24 @@ namespace WindowsForms_Monster_Hunter.Models
             MotionValue = motionValue;
             SharpnessColor = sharpnessColor;
             SharpnessMultiplier = sharpnessMultiplier;
+            Rank = rank;
+            DamageCalc = CalculateDamage();
         }
 
         //This function calculates how much damage a single strike from your weapon will deal
         public double CalculateDamage()
         {
-            return (DamageValue * DamageMultiplier * MotionValue * SharpnessMultiplier) / 0.45;
+            return Math.Round((DamageValue * DamageMultiplier * MotionValue * SharpnessMultiplier) / 0.45, 2);
         }
 
         public override string ToString()
         {
-            return $"Name:{Name}\nClass:{WeaponClass,18}\nDV:{DamageValue,20}\nDM:{DamageMultiplier,20}\nMV:{MotionValue,20}\nColor:{SharpnessColor,17}\nSM:{SharpnessMultiplier,20}";
+            return $"Name:{Name}\nClass:{WeaponClass,18}\nDV:{DamageValue,20}\nDM:{DamageMultiplier,20}\nMV:{MotionValue,20}\nColor:{SharpnessColor,17}\nSM:{SharpnessMultiplier,20}\n{Rank}\nDC:{CalculateDamage(), 0:F1}";
+        }
+
+        public string ToTabDelimitedString()
+        {
+            return $"{Name}\t{WeaponClass}\t{DamageValue}\t{DamageMultiplier}\t{MotionValue}\t{SharpnessColor}\t{SharpnessMultiplier}\t{Rank}\t{CalculateDamage(), 0:F1}";
         }
 
         //If the sharpness color is updated, the multiplier needs to be updated as well.
