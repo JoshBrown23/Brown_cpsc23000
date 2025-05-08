@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Review Questions";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p><b>Question: </b>Explain the purpose of _Layout.cshtml and _ViewStart.cshtml.</p>
+<p><b>Answer: </b>
+    The purpose of _Layout.cshtml is to provide the various pages of your website with a consistent style. 
+    Some of this styling can include Bootstrap headers and footers that appear on every page.
+    As for _ViewStart.cshtml, this is the file that sets _Layout.cshtml as the default layout for every page.
+</p><br />
+
+<p><b>Question: </b>Give two examples of asp tag helpers, and clearly explain the purpose of each.</p>
+<p><b>Answer: </b>
+    Two examples of ASP tag helpers are asp-action and asp-validation-summary.
+    Asp-action is a tag helper that determines which controller method should be performed when a button or link is pressed.
+    Asp-validation-summary is a tag helper that can assist with printing error messages to the screen.
+    If a user attempts to input information that contradicts the annotations of your model class, this tag helper
+    can notify users that they have done something wrong.
+</p><br/>
+
+<p><b>Question: </b>When using programming by convention, how do I know which view will be loaded by View() when called for a function of a controller? Give a concrete example.</p>
+<p><b>Answer: </b>
+    If programming by convention is used, the displayed view is choosen through a process called view discovery. 
+    If no parameters are passed to the View() method, it will search for a view file with the same action name. 
+    It will search for this view in the Views and Shared folders.
+    For example, if you have a controller function named Index that returns View(), 
+    the view discovery process will search the paths Views/[ControllerName] and Views/Shared for a view file that matches the name of the function. 
+    Most likely, a view file called Index.cshtml will be found and displayed as a result.
+</p>

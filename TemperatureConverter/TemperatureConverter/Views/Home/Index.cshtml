@@ -1,0 +1,73 @@
+﻿@model TempConverterModel
+@{
+    ViewData["Title"] = "Home Page";
+    float value = 0f;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Temperature Converter App</h1>
+    <p>Use the controls below to convert a temperature from one scale to another.</p>
+    <form asp-action="Index" asp-controller="Home" method="post">
+        <div asp-validation-summary="All"></div>
+
+        <div class="form-group">
+            <label asp-for="OriginalTemperature" class="control-label">Original Temperature</label>
+            <input asp-for="OriginalTemperature" class="form-control" />
+        </div>
+
+        @{
+            string celsiusStatus = "checked";
+            string farenheitStatus = "";
+            if (Model != null)
+            {
+                if(Model.TempScale == "celsius")
+                {
+                    celsiusStatus = "checked";
+                    farenheitStatus = "";
+                }
+                else
+                {
+                    celsiusStatus = "";
+                    farenheitStatus = "checked";
+                }
+            }
+        }
+        <div class="form-group">
+            Select Conversion: <br/>
+            <input type="radio" name="TempScale" value="celsius" @celsiusStatus/>To Celsius
+            <input type="radio" name="TempScale" value="farenheit" @farenheitStatus/>To Farenheit
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Clear</a>
+        </div>
+        @{
+            if (Model != null)
+            {
+                value = Model.ConvertedTemperature;
+            }
+        }
+    </form>
+
+    @{
+        string output = "";
+        if (Model != null)
+        {
+            if (Model.TempScale == "celsius")
+            {
+                output = $"{Model.OriginalTemperature, 0:F3} C is {Model.ConvertedTemperature, 0:F3} F";
+            }
+            else
+            {
+                output = $"{Model.OriginalTemperature, 0:F3} F is {Model.ConvertedTemperature, 0:F3} C";
+            }
+        }
+    }
+    <div class="form-group">
+        <label class="control-label" for="ConvertedTemperature">Converted Temperature</label>
+        <input class="form-control" value="@output" readonly/>
+    </div>
+</div>
+
+<!--REMEMBER TO FILL IN QUESTIONS PAGE!!!-->
